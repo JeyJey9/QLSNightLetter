@@ -1,0 +1,254 @@
+import os
+import threading
+import logging
+import warnings
+import pandas as pd
+import pdfplumber
+import re
+from openpyxl import load_workbook
+import tkinter as tk
+from tkinter import ttk, filedialog, messagebox
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(message)s')
+# Suppress pdfminer/pdfplumber warnings
+logging.getLogger("pdfminer").setLevel(logging.ERROR)
+logging.getLogger("pdfminer.pdfparser").setLevel(logging.ERROR)
+logging.getLogger("pdfminer.pdfinterp").setLevel(logging.ERROR)
+logging.getLogger("pdfplumber").setLevel(logging.ERROR)
+warnings.filterwarnings("ignore", message="CropBox missing from.*")
+
+# -----------------------------------------------------------------------------
+# Core PDF extraction: gets last and second-last values for monthly, weekly, daily
+# -----------------------------------------------------------------------------
+def parse_pdf_values(pdf_path):
+    with pdfplumber.open(pdf_path) as pdf:
+        text = pdf.pages[0].extract_text() or ""
+    # find target line
+    target = next((ln for ln in text.split("\n") if "Actual Unit Concern" in ln), "")
+    nums = [n for n in re.findall(r"\d+\.\d+|\d+", target) if n != '1000']
+    # require at least 14 values
+    if len(nums) < 14:
+        return None
+    # segments: 2 MY, 6 months, 6 weeks, rest daily
+    monthly_seg = nums[2:8]
+    weekly_seg  = nums[8:14]
+    daily_seg   = nums[14:]
+    if not (monthly_seg and weekly_seg and daily_seg):
+        return None
+    def pick(seg, idx): return seg[-idx] if len(seg) >= idx else seg[-1]
+    return {
+        'monthly_last': pick(monthly_seg, 1),
+        'monthly_prev': pick(monthly_seg, 2),
+        'weekly_last':  pick(weekly_seg, 1),
+        'weekly_prev':  pick(weekly_seg, 2),
+        'daily_last':   pick(daily_seg, 1),
+        'daily_prev':   pick(daily_seg, 2)
+    }
+
+# -----------------------------------------------------------------------------
+# Process a single PDF: extract and write Data sheet
+# -----------------------------------------------------------------------------
+def process_pdf(pdf_path, root_folder, output_root, log_func, update_prog):
+    rel = os.path.relpath(pdf_path, root_folder)
+    excel_path = os.path.join(output_root, os.path.splitext(rel)[0] + ".xlsx")
+    os.makedirs(os.path.dirname(excel_path), exist_ok=True)
+    vals = parse_pdf_values(pdf_path)
+    if not vals:
+        log_func(f"[WARN] Skipped {os.path.basename(pdf_path)} (insufficient data)\n")
+    else:
+        df = pd.DataFrame([vals])
+        with pd.ExcelWriter(excel_path, engine="openpyxl") as writer:
+            df.to_excel(writer, sheet_name="Data", index=False)
+        log_func(f"[OK] Extracted Data for {os.path.basename(pdf_path)}\n")
+    update_prog()
+
+# -----------------------------------------------------------------------------
+# Update master workbooks using mapping and extracted Data
+# -----------------------------------------------------------------------------
+def update_masters(mapping_file, output_root, root_folder,
+                   upd_last_monthly, upd_last_weekly, upd_last_daily,
+                   upd_prev_monthly, upd_prev_weekly, upd_prev_daily,
+                   log_func, update_prog):
+    # find all master workbooks
+    masters = [
+        os.path.join(root_folder, f)
+        for f in os.listdir(root_folder)
+        if f.lower().startswith('study_nl_') and f.lower().endswith('.xlsx')
+    ]
+
+    for mf in masters:
+        wb = load_workbook(mf)
+        log_func(f"Updating master: {os.path.basename(mf)}...\n")
+
+        for sheet in wb.sheetnames:
+            # match WO CAL first, then CAL
+            if "Items_WO CAL" in sheet:
+                folder = "WO CAL"
+            elif "Items_CAL" in sheet:
+                folder = "CAL"
+            else:
+                continue
+
+            plant = sheet.split()[0]
+            ws = wb[sheet]
+            map_sheet = f"{plant} {folder}"
+
+            try:
+                map_df = pd.read_excel(mapping_file, sheet_name=map_sheet)
+            except Exception:
+                log_func(f"[WARN] Missing mapping sheet '{map_sheet}'\n")
+                continue
+
+            # map_df: col A sticker, col B pdf filename stem
+            for _, row in map_df.iterrows():
+                sticker   = str(row[map_df.columns[0]]).strip()
+                pdf_stem  = str(row[map_df.columns[1]]).strip().removesuffix('.pdf')
+                data_file = os.path.join(output_root, plant, folder, f"{pdf_stem}.xlsx")
+
+                if not os.path.isfile(data_file):
+                    log_func(f"[WARN] Data file not found: {data_file}\n")
+                    continue
+
+                # read first sheet (sheet 0) instead of 'Data'
+                try:
+                    df = pd.read_excel(data_file, sheet_name=0)
+                except Exception:
+                    log_func(f"[WARN] Could not read sheet 0 in {data_file}\n")
+                    continue
+
+                if df.empty:
+                    log_func(f"[WARN] Empty Data in: {data_file}\n")
+                    continue
+
+                vals = df.iloc[0]
+                # write into master: F=6, E=5, M=13, L=12, Q=17, P=16
+                for r in range(3, ws.max_row + 1):
+                    if str(ws.cell(r, 2).value).strip() == sticker:
+                        if upd_last_monthly: ws.cell(r, 6).value  = vals.get('monthly_last')
+                        if upd_prev_monthly: ws.cell(r, 5).value  = vals.get('monthly_prev')
+                        if upd_last_weekly:  ws.cell(r, 13).value = vals.get('weekly_last')
+                        if upd_prev_weekly:  ws.cell(r, 12).value = vals.get('weekly_prev')
+                        if upd_last_daily:   ws.cell(r, 17).value = vals.get('daily_last')
+                        if upd_prev_daily:   ws.cell(r, 16).value = vals.get('daily_prev')
+                        log_func(f"Updated '{sticker}' in {sheet} (row {r})\n")
+                        break
+
+        try:
+            wb.save(mf)
+            log_func(f"Saved master: {os.path.basename(mf)}\n")
+        except PermissionError:
+            log_func(f"[ERROR] Close {os.path.basename(mf)} to save.\n")
+
+        update_prog()
+
+# -----------------------------------------------------------------------------
+# GUI using Tkinter
+# -----------------------------------------------------------------------------
+def launch_gui():
+    root = tk.Tk()
+    root.title("PDF → Excel & Master Updater")
+
+    # Variables
+    root_folder    = tk.StringVar(value=os.getcwd())
+    mapping_file_v = tk.StringVar(value="Sticker_Mapping.xlsx")
+    last_monthly   = tk.BooleanVar(value=True)
+    last_weekly    = tk.BooleanVar(value=True)
+    last_daily     = tk.BooleanVar(value=True)
+    prev_monthly   = tk.BooleanVar(value=False)
+    prev_weekly    = tk.BooleanVar(value=False)
+    prev_daily     = tk.BooleanVar(value=False)
+
+    # Layout
+    frm = ttk.Frame(root, padding=10)
+    frm.grid(row=0, column=0, sticky="nsew")
+
+    # Folder and mapping selectors
+    ttk.Label(frm, text="Root Folder:").grid(row=0, column=0, sticky="w")
+    ttk.Entry(frm, textvariable=root_folder, width=50).grid(row=0, column=1)
+    ttk.Button(frm, text="Browse",
+               command=lambda: root_folder.set(filedialog.askdirectory())
+    ).grid(row=0, column=2)
+
+    ttk.Label(frm, text="Mapping File:").grid(row=1, column=0, sticky="w")
+    ttk.Entry(frm, textvariable=mapping_file_v, width=50).grid(row=1, column=1)
+    ttk.Button(frm, text="Browse",
+               command=lambda: mapping_file_v.set(
+                   filedialog.askopenfilename(filetypes=[("Excel","*.xlsx")])
+               )
+    ).grid(row=1, column=2)
+
+    # Checkboxes
+    ttk.Checkbutton(frm, text="Last Monthly (col F)",
+                    variable=last_monthly).grid(row=2, column=0)
+    ttk.Checkbutton(frm, text="Last Weekly (col M)",
+                    variable=last_weekly).grid(row=2, column=1)
+    ttk.Checkbutton(frm, text="Last Daily (col Q)",
+                    variable=last_daily).grid(row=2, column=2)
+    ttk.Checkbutton(frm, text="Prev Monthly (col E)",
+                    variable=prev_monthly).grid(row=3, column=0)
+    ttk.Checkbutton(frm, text="Prev Weekly (col L)",
+                    variable=prev_weekly).grid(row=3, column=1)
+    ttk.Checkbutton(frm, text="Prev Daily (col P)",
+                    variable=prev_daily).grid(row=3, column=2)
+
+    # Progress bar
+    progress = ttk.Progressbar(frm, length=400, mode='determinate')
+    progress.grid(row=4, column=0, columnspan=3, pady=10)
+
+    # Log text box
+    txt = tk.Text(frm, width=80, height=20)
+    txt.grid(row=5, column=0, columnspan=3)
+
+    # Logging and progress callbacks
+    def log_func(msg):
+        txt.insert(tk.END, msg)
+        txt.see(tk.END)
+
+    def update_prog():
+        progress['value'] += 1
+
+    # Run action
+    def on_run():
+        txt.delete('1.0', tk.END)
+        progress['value'] = 0
+        r = root_folder.get()
+        # gather PDFs
+        pdfs = []
+        for plant in os.listdir(r):
+            for folder in ['CAL','WO CAL']:
+                p = os.path.join(r, plant, folder)
+                if os.path.isdir(p):
+                    for f in os.listdir(p):
+                        if f.lower().endswith('.pdf'):
+                            pdfs.append(os.path.join(p, f))
+        total = len(pdfs)
+        # gather masters
+        masters = [f for f in os.listdir(r)
+                   if f.lower().startswith('study_nl_') and f.lower().endswith('.xlsx')]
+        progress['maximum'] = total + len(masters)
+
+        def worker():
+            out_root = os.path.join(r, 'EXCEL_OUTPUT')
+            os.makedirs(out_root, exist_ok=True)
+            for pdf in pdfs:
+                process_pdf(pdf, r, out_root, log_func, update_prog)
+            update_masters(mapping_file_v.get(), out_root, r,
+                           last_monthly.get(), last_weekly.get(), last_daily.get(),
+                           prev_monthly.get(), prev_weekly.get(), prev_daily.get(),
+                           log_func, update_prog)
+            messagebox.showinfo("Done", "Processing complete.")
+
+        threading.Thread(target=worker, daemon=True).start()
+
+    ttk.Button(frm, text="Run", command=on_run).grid(row=6, column=1, pady=10)
+
+    # Credits line
+    ttk.Label(frm, text="grece@ford.com.tr").grid(
+        row=7, column=0, columnspan=3, sticky="e", pady=(10,0)
+    )
+
+    root.mainloop()
+
+if __name__ == "__main__":
+    launch_gui()
