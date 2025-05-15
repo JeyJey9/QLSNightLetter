@@ -38,3 +38,10 @@ V1.5.1
 
 - Reordered actions. Now if you choose to shift data and also to update values the script will first shift data from right to left 
    in the set of data you specify and leave the last column empty after which it will paste data inside that empty column it left.
+
+V1.5.2
+
+- Added a logic for the script to insert the values from the PDFs to every sticker it finds in the sheets. 
+- What used to happen is that if a sticker was hidden, it was an issue that was relevant then it wasn't necesarry to have it in so it was hidden,
+- and added again later when the issue became relevant again the script would only update the first occurence of the sticker in the list.
+- Now it updates all occurences on a specific sticker no matter if there are any hidden ones or not.
