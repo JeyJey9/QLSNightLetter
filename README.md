@@ -29,3 +29,12 @@ V1.3.1
 V1.3.2
 
 - Added "PDF Insufficient Data Report"
+
+V1.5
+
+- Added "Data Shifting"
+
+V1.5.1
+
+- Reordered actions. Now if you choose to shift data and also to update values the script will first shift data from right to left 
+   in the set of data you specify and leave the last column empty after which it will paste data inside that empty column it left.
