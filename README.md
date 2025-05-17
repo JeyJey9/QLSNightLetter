@@ -56,5 +56,8 @@ V1.6.1
    + In case some PDFs STILL fail, the list that fail will be shown at the end of the script so they can be manually updated.
 
 V1.8
-- Added Language Picker
+- Added Language Support
    + To note that the translations are not perfect. They were done with Google Translate.
+
+V1.9
+- Added "Help" button to understand each option
