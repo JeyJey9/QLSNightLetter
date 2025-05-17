@@ -1,7 +1,7 @@
 # QLSNightLetter
 Python Script
 
-Updates Logging
+Changelogs
 
 V1
 
