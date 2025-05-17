@@ -127,6 +127,8 @@ class QLSApp:
         self.var_shift_weekly  = tk.BooleanVar(value=False)
         self.var_shift_daily   = tk.BooleanVar(value=False)
 
+        
+
         # Language button
         self.lang_button = tk.Button(
             self.root,
@@ -140,7 +142,22 @@ class QLSApp:
             highlightthickness=0,             # no focus border
             command=self.open_language_picker
         )
-        self.lang_button.place(relx=0.86, rely=0.01, height=35, width=96)  # match Browse button size
+        self.lang_button.place(relx=0.86, rely=0.045, height=35, width=96)  # match Browse button size
+
+        self.help_button = tk.Button(
+            self.root,
+            text=tr(self.current_lang_code, "Help"),
+            font=("Segoe UI", 10),
+            bg="#fff",
+            fg="#000",
+            bd=2,
+            relief="raised",
+            activebackground="#ececec",
+            highlightthickness=0,
+            command=self.open_help_popup
+        )
+        # Place just below the Language button (adjust relx/rely as needed to fit layout)
+        self.help_button.place(relx=0.86, rely=0.125, height=35, width=96)
 
         # Root Folder
         self.Label1 = tk.Label(
@@ -292,11 +309,15 @@ class QLSApp:
 
         self.update_checkbox_texts(self.current_lang_code)  # Initial sizing
 
+    def open_help_popup(self):
+            help_text = tr(self.current_lang_code, "Help_Message")
+            tk.messagebox.showinfo(tr(self.current_lang_code, "Help"), help_text)
+
     def update_checkbox_texts(self, lang_code):
         labels = [tr(lang_code, key) for _, key in self.checkbox_widgets]
         max_chars = max(len(label) for label in labels)
-        width_px = min(max(max_chars * 9, 140), 240)
-        wrap_px = width_px - 18
+        width_px = min(max(max_chars * 11, 160), 240)+30
+        wrap_px = width_px - 25
         for cb, key in self.checkbox_widgets:
             cb.config(text=tr(lang_code, key), wraplength=wrap_px)
 

@@ -79,7 +79,25 @@ TRANSLATIONS = {
         "Done": "Done",
         "Complete": "Complete",
         "skipped": "skipped",
-        "Column\nUpdate\nOptions": "Column\nUpdate\nOptions"
+        "Column\nUpdate\nOptions": "Column\nUpdate\nOptions",
+        "Help" : "Help",
+        "Help_Message":
+    "QLS Night Letter Tool Help\n\n"
+    "Root Folder:\n"
+    "  Select the main folder containing your plant subfolders (e.g., CAL, WO CAL, FCPA).\n\n"
+    "Mapping File:\n"
+    "  Browse for the Sticker_Mapping.xlsx file to map PDF content to Excel columns.\n\n"
+    "Column Update Options:\n"
+    "  Select which metrics you want to update in the Excel master files:\n"
+    "    - Last/Prev Monthly (F/E)\n"
+    "    - Last/Prev Weekly (M/L)\n"
+    "    - Last/Prev Daily (Q/P)\n\n"
+    "Shift Values:\n"
+    "  When checked, shifts old values before writing new ones in the selected columns.\n\n"
+    "Text Log:\n"
+    "  Displays progress, errors, and skipped files during processing.\n\n"
+    "If you need further support, contact grece@ford.com.tr"
+
     },
     # ---- ENGLISH (British) ----
     "en_GB": {
@@ -109,7 +127,25 @@ TRANSLATIONS = {
         "Done": "Done",
         "Complete": "Complete",
         "skipped": "skipped",
-        "Column\nUpdate\nOptions": "Column\nUpdate\nOptions"
+        "Column\nUpdate\nOptions": "Column\nUpdate\nOptions",
+        "Help" : "Help",
+        "Help_Message":
+    "QLS Night Letter Tool Help\n\n"
+    "Root Folder:\n"
+    "  Select the main folder containing your plant subfolders (e.g., CAL, WO CAL, FCPA).\n\n"
+    "Mapping File:\n"
+    "  Browse for the Sticker_Mapping.xlsx file to map PDF content to Excel columns.\n\n"
+    "Column Update Options:\n"
+    "  Select which metrics you want to update in the Excel master files:\n"
+    "    - Last/Prev Monthly (F/E)\n"
+    "    - Last/Prev Weekly (M/L)\n"
+    "    - Last/Prev Daily (Q/P)\n\n"
+    "Shift Values:\n"
+    "  When checked, shifts old values before writing new ones in the selected columns.\n\n"
+    "Text Log:\n"
+    "  Displays progress, errors, and skipped files during processing.\n\n"
+    "If you need further support, contact grece@ford.com.tr"
+
     },
     # ---- ENGLISH (Australian) ----
     "en_AU": {
@@ -139,7 +175,25 @@ TRANSLATIONS = {
         "Done": "Done",
         "Complete": "Complete",
         "skipped": "skipped",
-        "Column\nUpdate\nOptions": "Column\nUpdate\nOptions"
+        "Column\nUpdate\nOptions": "Column\nUpdate\nOptions",
+        "Help" : "Help",
+        "Help_Message":
+    "QLS Night Letter Tool Help\n\n"
+    "Root Folder:\n"
+    "  Select the main folder containing your plant subfolders (e.g., CAL, WO CAL, FCPA).\n\n"
+    "Mapping File:\n"
+    "  Browse for the Sticker_Mapping.xlsx file to map PDF content to Excel columns.\n\n"
+    "Column Update Options:\n"
+    "  Select which metrics you want to update in the Excel master files:\n"
+    "    - Last/Prev Monthly (F/E)\n"
+    "    - Last/Prev Weekly (M/L)\n"
+    "    - Last/Prev Daily (Q/P)\n\n"
+    "Shift Values:\n"
+    "  When checked, shifts old values before writing new ones in the selected columns.\n\n"
+    "Text Log:\n"
+    "  Displays progress, errors, and skipped files during processing.\n\n"
+    "If you need further support, contact grece@ford.com.tr"
+
     },
     # ---- SPANISH (Spain) ----
     "es_ES": {
@@ -187,7 +241,25 @@ TRANSLATIONS = {
         "Done": "Hecho",
         "Complete": "Completo",
         "skipped": "omitido",
-        "Column\nUpdate\nOptions": "Columna\nActualizar\nOpciones"
+        "Column\nUpdate\nOptions": "Columna\nActualizar\nOpciones",
+        "Help": "Ayuda",
+        "Help_Message":
+    "Ayuda QLS Night Letter Tool\n\n"
+    "Carpeta raíz:\n"
+    "  Seleccione la carpeta principal que contiene las subcarpetas de planta (ej: CAL, WO CAL, FCPA).\n\n"
+    "Archivo de mapeo:\n"
+    "  Seleccione Sticker_Mapping.xlsx para mapear el contenido del PDF a columnas de Excel.\n\n"
+    "Opciones de actualización de columna:\n"
+    "  Seleccione qué métricas desea actualizar en los archivos maestros de Excel:\n"
+    "    - Mensual último/anterior (F/E)\n"
+    "    - Semanal último/anterior (M/L)\n"
+    "    - Diario último/anterior (Q/P)\n\n"
+    "Desplazar valores:\n"
+    "  Si está marcado, desplaza los valores antiguos antes de escribir los nuevos en las columnas seleccionadas.\n\n"
+    "Registro de texto:\n"
+    "  Muestra el progreso, errores y archivos omitidos durante el procesamiento.\n\n"
+    "Si necesita más ayuda, contacte a grece@ford.com.tr"
+
     },
     # ---- MEXICAN SPANISH ----
     "es_MX": {
@@ -235,7 +307,25 @@ TRANSLATIONS = {
         "Done": "Hecho",
         "Complete": "Completo",
         "skipped": "omitido",
-        "Column\nUpdate\nOptions": "Columna\nActualizar\nOpciones"
+        "Column\nUpdate\nOptions": "Columna\nActualizar\nOpciones",
+        "Help": "Ayuda",
+        "Help_Message":
+        "Ayuda QLS Night Letter Tool\n\n"
+        "Carpeta raíz:\n"
+        "  Seleccione la carpeta principal que contiene las subcarpetas de planta (ej: CAL, WO CAL, FCPA).\n\n"
+        "Archivo de mapeo:\n"
+        "  Seleccione Sticker_Mapping.xlsx para mapear el contenido del PDF a columnas de Excel.\n\n"
+        "Opciones de actualización de columna:\n"
+        "  Seleccione qué métricas desea actualizar en los archivos maestros de Excel:\n"
+        "    - Mensual último/anterior (F/E)\n"
+        "    - Semanal último/anterior (M/L)\n"
+        "    - Diario último/anterior (Q/P)\n\n"
+        "Desplazar valores:\n"
+        "  Si está marcado, desplaza los valores antiguos antes de escribir los nuevos en las columnas seleccionadas.\n\n"
+        "Registro de texto:\n"
+        "  Muestra el progreso, errores y archivos omitidos durante el procesamiento.\n\n"
+        "Si necesita más ayuda, contacte a grece@ford.com.tr"
+
     },
     # ---- BRAZILIAN PORTUGUESE ----
     "pt_BR": {
@@ -283,7 +373,25 @@ TRANSLATIONS = {
         "Done": "Concluído",
         "Complete": "Completo",
         "skipped": "ignorado",
-        "Column\nUpdate\nOptions": "Coluna\nAtualizar\nOpções"
+        "Column\nUpdate\nOptions": "Coluna\nAtualizar\nOpções",
+        "Help": "Ajuda",
+        "Help_Message":
+    "Ajuda da Ferramenta QLS Night Letter\n\n"
+    "Pasta raiz:\n"
+    "  Selecione a pasta principal que contém as subpastas das plantas (ex: CAL, WO CAL, FCPA).\n\n"
+    "Arquivo de mapeamento:\n"
+    "  Selecione o arquivo Sticker_Mapping.xlsx para mapear o conteúdo do PDF para colunas do Excel.\n\n"
+    "Opções de atualização de coluna:\n"
+    "  Selecione quais métricas deseja atualizar nos arquivos mestres do Excel:\n"
+    "    - Último/Anterior Mensal (F/E)\n"
+    "    - Último/Anterior Semanal (M/L)\n"
+    "    - Último/Anterior Diário (Q/P)\n\n"
+    "Deslocar valores:\n"
+    "  Quando marcado, desloca os valores antigos antes de gravar os novos nas colunas selecionadas.\n\n"
+    "Log de texto:\n"
+    "  Exibe o progresso, erros e arquivos ignorados durante o processamento.\n\n"
+    "Se precisar de mais suporte, entre em contato: grece@ford.com.tr"
+
     },
     # ---- GERMAN ----
     "de_DE": {
@@ -331,7 +439,25 @@ TRANSLATIONS = {
         "Done": "Fertig",
         "Complete": "Vollständig",
         "skipped": "übersprungen",
-        "Column\nUpdate\nOptions": "Spalte\nAktualisieren\nOptionen"
+        "Column\nUpdate\nOptions": "Spalte\nAktualisieren\nOptionen",
+        "Help": "Hilfe",
+        "Help_Message":
+    "QLS Night Letter Tool Hilfe\n\n"
+    "Stammordner:\n"
+    "  Wählen Sie den Hauptordner mit den Werk-Unterordnern (z. B. CAL, WO CAL, FCPA).\n\n"
+    "Mapping-Datei:\n"
+    "  Wählen Sie die Sticker_Mapping.xlsx-Datei, um PDF-Inhalte auf Excel-Spalten zuzuordnen.\n\n"
+    "Spalte Aktualisieren Optionen:\n"
+    "  Wählen Sie, welche Kennzahlen Sie in den Excel-Masterdateien aktualisieren möchten:\n"
+    "    - Letzter/Vorheriger Monat (F/E)\n"
+    "    - Letzte/Vorherige Woche (M/L)\n"
+    "    - Letzter/Vorheriger Tag (Q/P)\n\n"
+    "Werte verschieben:\n"
+    "  Wenn aktiviert, werden alte Werte verschoben, bevor neue in die ausgewählten Spalten geschrieben werden.\n\n"
+    "Textprotokoll:\n"
+    "  Zeigt Fortschritt, Fehler und übersprungene Dateien während der Verarbeitung an.\n\n"
+    "Bei weiteren Fragen kontaktieren Sie grece@ford.com.tr"
+
     },
     # ---- COLOGNE GERMAN ----
     "de_KO": {
@@ -379,7 +505,25 @@ TRANSLATIONS = {
         "Done": "Fertig",
         "Complete": "Vollständig",
         "skipped": "übersprungen",
-        "Column\nUpdate\nOptions": "Spalte\nAktualisieren\nOptionen"
+        "Column\nUpdate\nOptions": "Spalte\nAktualisieren\nOptionen",
+        "Help": "Hilfe",
+        "Help_Message":
+    "QLS Night Letter Tool Hilfe\n\n"
+    "Stammordner:\n"
+    "  Wählen Sie den Hauptordner mit den Werk-Unterordnern (z. B. CAL, WO CAL, FCPA).\n\n"
+    "Mapping-Datei:\n"
+    "  Wählen Sie die Sticker_Mapping.xlsx-Datei, um PDF-Inhalte auf Excel-Spalten zuzuordnen.\n\n"
+    "Spalte Aktualisieren Optionen:\n"
+    "  Wählen Sie, welche Kennzahlen Sie in den Excel-Masterdateien aktualisieren möchten:\n"
+    "    - Letzter/Vorheriger Monat (F/E)\n"
+    "    - Letzte/Vorherige Woche (M/L)\n"
+    "    - Letzter/Vorheriger Tag (Q/P)\n\n"
+    "Werte verschieben:\n"
+    "  Wenn aktiviert, werden alte Werte verschoben, bevor neue in die ausgewählten Spalten geschrieben werden.\n\n"
+    "Textprotokoll:\n"
+    "  Zeigt Fortschritt, Fehler und übersprungene Dateien während der Verarbeitung an.\n\n"
+    "Bei weiteren Fragen kontaktieren Sie grece@ford.com.tr"
+
     },
     # ---- DUTCH ----
     "nl_NL": {
@@ -427,7 +571,25 @@ TRANSLATIONS = {
         "Done": "Klaar",
         "Complete": "Voltooid",
         "skipped": "overgeslagen",
-        "Column\nUpdate\nOptions": "Kolom\nBijwerken\nOpties"
+        "Column\nUpdate\nOptions": "Kolom\nBijwerken\nOpties",
+        "Help": "Help",
+        "Help_Message":
+    "QLS Night Letter Tool Help\n\n"
+    "Hoofdmap:\n"
+    "  Selecteer de hoofdmap met de submappen per fabriek (bijv. CAL, WO CAL, FCPA).\n\n"
+    "Koppelingsbestand:\n"
+    "  Kies het bestand Sticker_Mapping.xlsx om PDF-inhoud naar Excel-kolommen te koppelen.\n\n"
+    "Kolom update opties:\n"
+    "  Selecteer welke metingen je in de Excel-hoofdbestanden wilt bijwerken:\n"
+    "    - Laatste/vorige maand (F/E)\n"
+    "    - Laatste/vorige week (M/L)\n"
+    "    - Laatste/vorige dag (Q/P)\n\n"
+    "Waarden verschuiven:\n"
+    "  Indien aangevinkt worden oude waarden verschoven voordat nieuwe worden ingevuld.\n\n"
+    "Tekstlogboek:\n"
+    "  Toont voortgang, fouten en overgeslagen bestanden tijdens het verwerken.\n\n"
+    "Voor verdere hulp: grece@ford.com.tr"
+
     },
     # ---- TURKISH ----
     "tr_TR": {
@@ -475,7 +637,25 @@ TRANSLATIONS = {
         "Done": "Bitti",
         "Complete": "Tamamlandı",
         "skipped": "atlandı",
-        "Column\nUpdate\nOptions": "Sütun\nGüncelle\nSeçenekler"
+        "Column\nUpdate\nOptions": "Sütun\nGüncelle\nSeçenekler",
+        "Help": "Yardım",
+        "Help_Message":
+    "QLS Night Letter Tool Yardım\n\n"
+    "Kök Klasör:\n"
+    "  Ana klasörü seçin, alt klasörler fabrika klasörleri olmalı (örn: CAL, WO CAL, FCPA).\n\n"
+    "Eşleme Dosyası:\n"
+    "  PDF içeriğini Excel sütunlarına eşlemek için Sticker_Mapping.xlsx dosyasını seçin.\n\n"
+    "Sütun Güncelleme Seçenekleri:\n"
+    "  Excel ana dosyalarında hangi metriklerin güncelleneceğini seçin:\n"
+    "    - Son/Önceki Aylık (F/E)\n"
+    "    - Son/Önceki Haftalık (M/L)\n"
+    "    - Son/Önceki Günlük (Q/P)\n\n"
+    "Değerleri Kaydır:\n"
+    "  İşaretliyse, yeni değerler yazılmadan önce eski değerler kaydırılır.\n\n"
+    "Kayıt günlüğü:\n"
+    "  İşlem sırasında ilerlemeyi, hataları ve atlanan dosyaları gösterir.\n\n"
+    "Daha fazla destek için: grece@ford.com.tr"
+
     },
     # ---- AFRIKAANS ----
     "af_ZA": {
@@ -523,7 +703,25 @@ TRANSLATIONS = {
         "Done": "Klaar",
         "Complete": "Voltooi",
         "skipped": "oorgegaan",
-        "Column\nUpdate\nOptions": "Kolom\nOpdateer\nOpsies"
+        "Column\nUpdate\nOptions": "Kolom\nOpdateer\nOpsies",
+        "Help": "Hulp",
+        "Help_Message":
+    "QLS Night Letter Tool Hulp\n\n"
+    "Gids:\n"
+    "  Kies die hoofgids wat die fabriek-subgidse bevat (bv. CAL, WO CAL, FCPA).\n\n"
+    "Koppel-lêer:\n"
+    "  Kies Sticker_Mapping.xlsx om PDF-inhoud na Excel-kolomme te koppel.\n\n"
+    "Kolom-opdateringsopsies:\n"
+    "  Kies watter waardes jy in die Excel-meesterlêers wil opdateer:\n"
+    "    - Laaste/Vorige maand (F/E)\n"
+    "    - Laaste/Vorige week (M/L)\n"
+    "    - Laaste/Vorige dag (Q/P)\n\n"
+    "Verskuif waardes:\n"
+    "  Indien gekies, word ou waardes verskuif voordat nuwe waardes in die kolomme geskryf word.\n\n"
+    "Tekslogboek:\n"
+    "  Wys vordering, foute en oorgeslaande lêers tydens verwerking.\n\n"
+    "Vir verdere hulp, kontak grece@ford.com.tr"
+
     },
     # ---- ROMANIAN ----
     "ro_RO": {
@@ -571,7 +769,25 @@ TRANSLATIONS = {
         "Done": "Gata",
         "Complete": "Complet",
         "skipped": "sărite",
-        "Column\nUpdate\nOptions": "Opțiuni\nActualizare\nColoană"
+        "Column\nUpdate\nOptions": "Opțiuni\nActualizare\nColoană",
+        "Help": "Ajutor",
+        "Help_Message":
+    "Ghid QLS Night Letter Tool\n\n"
+    "Director rădăcină:\n"
+    "  Selectați dosarul principal care conține subfolderele fabricii (ex: CAL, WO CAL, FCPA).\n\n"
+    "Fișier de mapare:\n"
+    "  Selectați Sticker_Mapping.xlsx pentru a mapa conținutul PDF către coloane Excel.\n\n"
+    "Opțiuni actualizare coloană:\n"
+    "  Selectați ce metrici doriți să actualizați în fișierele master Excel:\n"
+    "    - Lunar Ultim/Precedent (F/E)\n"
+    "    - Săptămânal Ultim/Precedent (M/L)\n"
+    "    - Zilnic Ultim/Precedent (Q/P)\n\n"
+    "Valori de mutat:\n"
+    "  Dacă este bifat, valorile vechi sunt mutate înainte de a scrie valorile noi în coloanele selectate.\n\n"
+    "Jurnal text:\n"
+    "  Afișează progresul, erorile și fișierele sărite în timpul procesării.\n\n"
+    "Pentru suport suplimentar, contactați grece@ford.com.tr"
+
     },
     # ---- RUSSIAN ----
     "ru_RU": {
@@ -619,7 +835,25 @@ TRANSLATIONS = {
         "Done": "Готово",
         "Complete": "Выполнено",
         "skipped": "пропущено",
-        "Column\nUpdate\nOptions": "Колонка\nОбновить\nОпции"
+        "Column\nUpdate\nOptions": "Колонка\nОбновить\nОпции",
+        "Help": "Помощь",
+        "Help_Message":
+    "Справка QLS Night Letter Tool\n\n"
+    "Корневая папка:\n"
+    "  Выберите основную папку, содержащую подпапки заводов (например: CAL, WO CAL, FCPA).\n\n"
+    "Файл сопоставления:\n"
+    "  Выберите файл Sticker_Mapping.xlsx для сопоставления содержимого PDF со столбцами Excel.\n\n"
+    "Опции обновления столбцов:\n"
+    "  Выберите, какие метрики обновлять в мастер-файлах Excel:\n"
+    "    - Последний/Предыдущий месяц (F/E)\n"
+    "    - Последняя/Предыдущая неделя (M/L)\n"
+    "    - Последний/Предыдущий день (Q/P)\n\n"
+    "Сдвиг значений:\n"
+    "  Если отмечено, старые значения смещаются перед записью новых в выбранные столбцы.\n\n"
+    "Журнал:\n"
+    "  Показывает ход выполнения, ошибки и пропущенные файлы.\n\n"
+    "Если нужна помощь, пишите на grece@ford.com.tr"
+
     },
     # ---- SIMPLIFIED CHINESE ----
     "zh_CN": {
@@ -667,7 +901,25 @@ TRANSLATIONS = {
         "Done": "完成",
         "Complete": "完成",
         "skipped": "已跳过",
-        "Column\nUpdate\nOptions": "列\n更新\n选项"
+        "Column\nUpdate\nOptions": "列\n更新\n选项",
+        "Help": "帮助",
+        "Help_Message":
+    "QLS Night Letter Tool 帮助\n\n"
+    "根文件夹：\n"
+    "  选择包含工厂子文件夹的主文件夹（如：CAL、WO CAL、FCPA）。\n\n"
+    "映射文件：\n"
+    "  选择 Sticker_Mapping.xlsx 文件，将 PDF 内容映射到 Excel 列。\n\n"
+    "列更新选项：\n"
+    "  选择要在 Excel 主文件中更新的指标：\n"
+    "    - 最近/上次月度 (F/E)\n"
+    "    - 最近/上次周度 (M/L)\n"
+    "    - 最近/上次每日 (Q/P)\n\n"
+    "移动值：\n"
+    "  若勾选，会在写入新值前将旧值下移。\n\n"
+    "日志：\n"
+    "  显示进度、错误以及处理时被跳过的文件。\n\n"
+    "如需更多支持，请联系 grece@ford.com.tr"
+
     },
     # ---- TRADITIONAL CHINESE ----
     "zh_TW": {
@@ -715,7 +967,25 @@ TRANSLATIONS = {
         "Done": "完成",
         "Complete": "完成",
         "skipped": "已跳過",
-        "Column\nUpdate\nOptions": "欄\n更新\n選項"
+        "Column\nUpdate\nOptions": "欄\n更新\n選項",
+        "Help": "幫助",
+        "Help_Message":
+    "QLS Night Letter Tool 使用說明\n\n"
+    "根目錄：\n"
+    "  選擇包含各廠區子資料夾的主要資料夾（例如：CAL、WO CAL、FCPA）。\n\n"
+    "映射文件：\n"
+    "  選擇 Sticker_Mapping.xlsx 檔案，以將 PDF 內容對應到 Excel 欄位。\n\n"
+    "欄更新選項：\n"
+    "  選擇要在 Excel 主檔中更新的指標：\n"
+    "    - 最近/前次每月 (F/E)\n"
+    "    - 最近/前次每週 (M/L)\n"
+    "    - 最近/前次每日 (Q/P)\n\n"
+    "移動值：\n"
+    "  若勾選，會先將舊值下移再寫入新值。\n\n"
+    "文字日誌：\n"
+    "  顯示處理進度、錯誤與被跳過的檔案。\n\n"
+    "若需進一步協助，請聯繫 grece@ford.com.tr"
+
     },
     # ---- THAI ----
     "th_TH": {
@@ -763,7 +1033,25 @@ TRANSLATIONS = {
         "Done": "เสร็จสิ้น",
         "Complete": "สมบูรณ์",
         "skipped": "ข้าม",
-        "Column\nUpdate\nOptions": "คอลัมน์\nอัปเดต\nตัวเลือก"
+        "Column\nUpdate\nOptions": "คอลัมน์\nอัปเดต\nตัวเลือก",
+        "Help": "ช่วยเหลือ",
+        "Help_Message":
+    "คู่มือการใช้งาน QLS Night Letter Tool\n\n"
+    "โฟลเดอร์หลัก:\n"
+    "  เลือกโฟลเดอร์หลักที่มีโฟลเดอร์ย่อยของโรงงาน (เช่น CAL, WO CAL, FCPA)\n\n"
+    "ไฟล์แมปปิ้ง:\n"
+    "  เลือกไฟล์ Sticker_Mapping.xlsx เพื่อแมปเนื้อหา PDF กับคอลัมน์ Excel\n\n"
+    "ตัวเลือกการอัปเดตคอลัมน์:\n"
+    "  เลือกข้อมูลที่ต้องการอัปเดตในไฟล์ Excel หลัก:\n"
+    "    - รายเดือนล่าสุด/ก่อนหน้า (F/E)\n"
+    "    - รายสัปดาห์ล่าสุด/ก่อนหน้า (M/L)\n"
+    "    - รายวันล่าสุด/ก่อนหน้า (Q/P)\n\n"
+    "เลื่อนค่า:\n"
+    "  หากเลือกไว้ จะเลื่อนค่าก่อนหน้าก่อนบันทึกค่าลงคอลัมน์ที่เลือก\n\n"
+    "บันทึกข้อความ:\n"
+    "  แสดงความคืบหน้า ข้อผิดพลาด และไฟล์ที่ข้ามระหว่างการประมวลผล\n\n"
+    "หากต้องการความช่วยเหลือเพิ่มเติม กรุณาติดต่อ grece@ford.com.tr"
+
     },
     # ---- VENEZUELAN SPANISH ----
     "es_VE": {
@@ -812,7 +1100,25 @@ TRANSLATIONS = {
         "Done": "Hecho",
         "Complete": "Completo",
         "skipped": "omitido",
-        "Column\nUpdate\nOptions": "Columna\nActualizar\nOpciones"
+        "Column\nUpdate\nOptions": "Columna\nActualizar\nOpciones",
+        "Help": "Ayuda",
+        "Help_Message":
+    "Ayuda QLS Night Letter Tool\n\n"
+    "Carpeta raíz:\n"
+    "  Seleccione la carpeta principal que contiene las subcarpetas de planta (ej: CAL, WO CAL, FCPA).\n\n"
+    "Archivo de mapeo:\n"
+    "  Seleccione Sticker_Mapping.xlsx para mapear el contenido del PDF a columnas de Excel.\n\n"
+    "Opciones de actualización de columna:\n"
+    "  Seleccione qué métricas desea actualizar en los archivos maestros de Excel:\n"
+    "    - Mensual último/anterior (F/E)\n"
+    "    - Semanal último/anterior (M/L)\n"
+    "    - Diario último/anterior (Q/P)\n\n"
+    "Desplazar valores:\n"
+    "  Si está marcado, desplaza los valores antiguos antes de escribir los nuevos en las columnas seleccionadas.\n\n"
+    "Registro de texto:\n"
+    "  Muestra el progreso, errores y archivos omitidos durante el procesamiento.\n\n"
+    "Si necesita más ayuda, contacte a grece@ford.com.tr"
+
     },
     # ---- ARGENTINIAN SPANISH ----
     "es_AR": {
@@ -861,7 +1167,25 @@ TRANSLATIONS = {
         "Done": "Hecho",
         "Complete": "Completo",
         "skipped": "omitido",
-        "Column\nUpdate\nOptions": "Columna\nActualizar\nOpciones"
+        "Column\nUpdate\nOptions": "Columna\nActualizar\nOpciones",
+        "Help": "Ayuda",
+        "Help_Message":
+    "Ayuda QLS Night Letter Tool\n\n"
+    "Carpeta raíz:\n"
+    "  Seleccione la carpeta principal que contiene las subcarpetas de planta (ej: CAL, WO CAL, FCPA).\n\n"
+    "Archivo de mapeo:\n"
+    "  Seleccione Sticker_Mapping.xlsx para mapear el contenido del PDF a columnas de Excel.\n\n"
+    "Opciones de actualización de columna:\n"
+    "  Seleccione qué métricas desea actualizar en los archivos maestros de Excel:\n"
+    "    - Mensual último/anterior (F/E)\n"
+    "    - Semanal último/anterior (M/L)\n"
+    "    - Diario último/anterior (Q/P)\n\n"
+    "Desplazar valores:\n"
+    "  Si está marcado, desplaza los valores antiguos antes de escribir los nuevos en las columnas seleccionadas.\n\n"
+    "Registro de texto:\n"
+    "  Muestra el progreso, errores y archivos omitidos durante el procesamiento.\n\n"
+    "Si necesita más ayuda, contacte a grece@ford.com.tr"
+
     },
     # ---- VIETNAMESE ----
     "vi_VN": {
@@ -909,6 +1233,24 @@ TRANSLATIONS = {
         "Done": "Xong",
         "Complete": "Hoàn tất",
         "skipped": "bỏ qua",
-        "Column\nUpdate\nOptions": "Cột\nCập nhật\nTùy chọn"
+        "Column\nUpdate\nOptions": "Cột\nCập nhật\nTùy chọn",
+        "Help": "Trợ giúp",
+        "Help_Message":
+    "Hướng dẫn sử dụng QLS Night Letter Tool\n\n"
+    "Thư mục gốc:\n"
+    "  Chọn thư mục chính chứa các thư mục con của nhà máy (ví dụ: CAL, WO CAL, FCPA).\n\n"
+    "Tệp ánh xạ:\n"
+    "  Duyệt đến tệp Sticker_Mapping.xlsx để ánh xạ nội dung PDF sang các cột Excel.\n\n"
+    "Tùy chọn cập nhật cột:\n"
+    "  Chọn các chỉ số bạn muốn cập nhật trong các tệp Excel chính:\n"
+    "    - Tháng cuối/trước (F/E)\n"
+    "    - Tuần cuối/trước (M/L)\n"
+    "    - Ngày cuối/trước (Q/P)\n\n"
+    "Dịch chuyển giá trị:\n"
+    "  Nếu được chọn, các giá trị cũ sẽ được dịch chuyển trước khi ghi giá trị mới vào các cột đã chọn.\n\n"
+    "Nhật ký văn bản:\n"
+    "  Hiển thị tiến trình, lỗi và các tệp bị bỏ qua trong quá trình xử lý.\n\n"
+    "Nếu cần hỗ trợ thêm, hãy liên hệ grece@ford.com.tr"
+
     },
 }
