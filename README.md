@@ -54,3 +54,7 @@ V1.6
 V1.6.1
 - Added "broken PDFs" debugging.
    + In case some PDFs STILL fail, the list that fail will be shown at the end of the script so they can be manually updated.
+
+V1.8
+- Added Language Picker
+   + To note that the translations are not perfect. They were done with Google Translate.
