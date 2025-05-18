@@ -164,10 +164,10 @@ class QLSApp:
             self.root, text=tr(self.current_lang_code, "Root Folder:"),
             background="#d9d9d9", foreground="#000000", anchor="w", borderwidth=0
         )
-        self.Label1.place(relx=0.035, rely=0.055, height=21, width=94)
+        self.Label1.place(relx=0.025, rely=0.055, height=21, width=94)
 
         self.entry_root_folder = tk.Entry(self.root, textvariable=self.var_root_folder)
-        self.entry_root_folder.place(relx=0.175, rely=0.055, height=20, relwidth=0.425)
+        self.entry_root_folder.place(relx=0.21, rely=0.055, height=20, relwidth=0.425)
 
         self.btn_browse_root = tk.Button(
             self.root, text=tr(self.current_lang_code, "Browse"),
@@ -175,17 +175,17 @@ class QLSApp:
             activebackground="#d9d9d9",
             command=self.browse_root
         )
-        self.btn_browse_root.place(relx=0.635, rely=0.055, height=26, width=77)
+        self.btn_browse_root.place(relx=0.67, rely=0.05, height=26, width=77)
 
         # Sticker Mapping
         self.Label2 = tk.Label(
             self.root, text=tr(self.current_lang_code, "Mapping File:"),
             background="#d9d9d9", foreground="#000000", anchor="w", borderwidth=0
         )
-        self.Label2.place(relx=0.035, rely=0.128, height=21, width=94)
+        self.Label2.place(relx=0.025, rely=0.128, height=21, width=140)
 
         self.entry_mapping_file = tk.Entry(self.root, textvariable=self.var_mapping_file)
-        self.entry_mapping_file.place(relx=0.175, rely=0.128, height=20, relwidth=0.425)
+        self.entry_mapping_file.place(relx=0.21, rely=0.128, height=20, relwidth=0.425)
 
         # --- Column Update Options label ---
         self.Label3 = tk.Label(
@@ -194,7 +194,7 @@ class QLSApp:
             font=("Segoe UI", 10)
         )
         # Place it between Mapping File and checkboxes
-        self.Label3.place(relx=0.035, rely=0.214, height=62, width=170)
+        self.Label3.place(relx=0.025, rely=0.214, height=62, width=170)
 
         self.btn_browse_map = tk.Button(
             self.root, text=tr(self.current_lang_code, "Browse"),
@@ -202,69 +202,69 @@ class QLSApp:
             activebackground="#d9d9d9",
             command=self.browse_map
         )
-        self.btn_browse_map.place(relx=0.635, rely=0.128, height=26, width=77)
+        self.btn_browse_map.place(relx=0.67, rely=0.125, height=26, width=77)
 
         # --- Dynamic Checkboxes with wrapping ---
         self.chk_last_monthly = tk.Checkbutton(
             self.root, text=tr(self.current_lang_code, "Last Monthly  (F)"),
             variable=self.var_last_monthly, anchor="w", justify="left", font=("Segoe UI", 10)
         )
-        self.chk_last_monthly.place(relx=0.135, rely=0.212, width=210, height=36)
+        self.chk_last_monthly.place(relx=0.175, rely=0.212, width=210, height=36)
 
         self.chk_prev_monthly = tk.Checkbutton(
             self.root, text=tr(self.current_lang_code, "Prev Monthly  (E)"),
             variable=self.var_prev_monthly, anchor="w", justify="left", font=("Segoe UI", 10)
         )
-        self.chk_prev_monthly.place(relx=0.135, rely=0.275, width=210, height=36)
+        self.chk_prev_monthly.place(relx=0.175, rely=0.275, width=210, height=36)
 
         self.chk_last_weekly = tk.Checkbutton(
             self.root, text=tr(self.current_lang_code, "Last Weekly   (M)"),
             variable=self.var_last_weekly, anchor="w", justify="left", font=("Segoe UI", 10)
         )
-        self.chk_last_weekly.place(relx=0.365, rely=0.212, width=210, height=36)
+        self.chk_last_weekly.place(relx=0.405, rely=0.212, width=210, height=36)
 
         self.chk_prev_weekly = tk.Checkbutton(
             self.root, text=tr(self.current_lang_code, "Prev Weekly   (L)"),
             variable=self.var_prev_weekly, anchor="w", justify="left", font=("Segoe UI", 10)
         )
-        self.chk_prev_weekly.place(relx=0.365, rely=0.275, width=210, height=36)
+        self.chk_prev_weekly.place(relx=0.405, rely=0.275, width=210, height=36)
 
         self.chk_last_daily = tk.Checkbutton(
             self.root, text=tr(self.current_lang_code, "Last Daily    (Q)"),
             variable=self.var_last_daily, anchor="w", justify="left", font=("Segoe UI", 10)
         )
-        self.chk_last_daily.place(relx=0.595, rely=0.212, width=210, height=36)
+        self.chk_last_daily.place(relx=0.635, rely=0.212, width=175, height=36)
 
         self.chk_prev_daily = tk.Checkbutton(
             self.root, text=tr(self.current_lang_code, "Prev Daily    (P)"),
             variable=self.var_prev_daily, anchor="w", justify="left", font=("Segoe UI", 10)
         )
-        self.chk_prev_daily.place(relx=0.595, rely=0.275, width=210, height=36)
+        self.chk_prev_daily.place(relx=0.635, rely=0.275, width=175, height=36)
 
         # Shift checkboxes (wider for full text)
         self.TLabel4 = tk.Label(
             self.root, text=tr(self.current_lang_code, "Shift Values:"),
             background="#d9d9d9", foreground="#000000", anchor="w", borderwidth=0
         )
-        self.TLabel4.place(relx=0.035, rely=0.385, height=17, width=83)
+        self.TLabel4.place(relx=0.025, rely=0.385, height=17, width=125)
 
         self.chk_shift_monthly = tk.Checkbutton(
             self.root, text=tr(self.current_lang_code, "Monthly (D→C–F→E)"),
             variable=self.var_shift_monthly, anchor="w", justify="left", font=("Segoe UI", 10)
         )
-        self.chk_shift_monthly.place(relx=0.135, rely=0.366, width=210, height=36)
+        self.chk_shift_monthly.place(relx=0.175, rely=0.366, width=210, height=36)
 
         self.chk_shift_weekly = tk.Checkbutton(
             self.root, text=tr(self.current_lang_code, "Weekly  (I→H–M→L)"),
             variable=self.var_shift_weekly, anchor="w", justify="left", font=("Segoe UI", 10)
         )
-        self.chk_shift_weekly.place(relx=0.365, rely=0.366, width=210, height=36)
+        self.chk_shift_weekly.place(relx=0.405, rely=0.366, width=210, height=36)
 
         self.chk_shift_daily = tk.Checkbutton(
             self.root, text=tr(self.current_lang_code, "Daily   (P→O–Q→P)"),
             variable=self.var_shift_daily, anchor="w", justify="left", font=("Segoe UI", 10)
         )
-        self.chk_shift_daily.place(relx=0.595, rely=0.366, width=210, height=36)
+        self.chk_shift_daily.place(relx=0.635, rely=0.366, width=175, height=36)
 
         # -- Store checkboxes and keys for dynamic updates --
         self.checkbox_widgets = [

@@ -61,3 +61,6 @@ V1.8
 
 V1.9
 - Added "Help" button to understand each option
+
+V1.9.1
+- Small UI changes to make space for every language translation due to spacing variations.
