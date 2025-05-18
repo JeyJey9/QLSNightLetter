@@ -1,4 +1,5 @@
 import os
+import sys
 import threading
 import pdfplumber
 import tkinter as tk
@@ -11,6 +12,12 @@ from languages import LANG_CODES, TRANSLATIONS
 
 def tr(lang, key):
     return TRANSLATIONS.get(lang, TRANSLATIONS["en_US"]).get(key, key)
+
+
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
 
 def get_flag_path(lang_name):
     fname = lang_name.replace(" ", "_") + ".png"
@@ -47,7 +54,8 @@ def show_language_picker(parent, set_lang_callback, current_lang):
     for i, lang_key in enumerate(langs):
         lang_code = LANG_CODES[lang_key]
         flag_name = lang_key.replace(" ", "_") + ".png"
-        flag_path = os.path.join("flags", flag_name)
+        flag_path = flag_path = resource_path(os.path.join("flags", flag_name))
+
 
         img = None
         if os.path.isfile(flag_path):
