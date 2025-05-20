@@ -11,6 +11,7 @@ def update_masters(mapping_file, output_root, root_folder,
     """
     Updates master Excel sheets by shifting old values and writing new ones.
     """
+
     # Build mapping DataFrame
     mapping_sheets = pd.read_excel(mapping_file, sheet_name=None)
     maps = []
@@ -22,6 +23,10 @@ def update_masters(mapping_file, output_root, root_folder,
             df = df.rename(columns={'Manual_label': 'Manual_Label'})
         maps.append(df.assign(Program=prog, Folder=folder))
     mapping_df = pd.concat(maps, ignore_index=True)
+
+    mapping_lookup = {}
+    for key, g in mapping_df.groupby(["Program", "Folder"]):
+        mapping_lookup[key] = g
 
     with xw.App(visible=False) as app:
         app.api.ScreenUpdating = False
@@ -40,37 +45,23 @@ def update_masters(mapping_file, output_root, root_folder,
             wb = app.books.open(mf)
 
             for sht in wb.sheets:
-                name = sht.name
-                if "Items_FCPA" in name:
-                    folder = "FCPA"
-                elif "Items_WO CAL" in name:
-                    folder = "WO CAL"
-                elif "Items_CAL" in name:
-                    folder = "CAL"
-                else:
-                    continue
+                # ... determine folder/program as before ...
+                prog = sht.name.split()[0]
+                subset = mapping_lookup.get((prog, folder), pd.DataFrame())
 
-                prog = name.split()[0]
-                subset = mapping_df[
-                    (mapping_df.Program == prog) &
-                    (mapping_df.Folder  == folder)
-                ]
-
-                col_b   = sht.range("B3").expand("down").value or []
+                col_b = sht.range("B3").expand("down").value or []
                 max_row = sht.range("B3").expand("down").last_cell.row
 
-                # 1) Shift existing values
-                if shift_monthly:
-                    sht.range(f"C3:E{max_row}").value = sht.range(f"D3:F{max_row}").value
-                    sht.range(f"F3:F{max_row}").clear_contents()
-                if shift_weekly:
-                    sht.range(f"H3:L{max_row}").value = sht.range(f"I3:M{max_row}").value
-                    sht.range(f"M3:M{max_row}").clear_contents()
-                if shift_daily:
-                    sht.range(f"O3:P{max_row}").value = sht.range(f"P3:Q{max_row}").value
-                    sht.range(f"Q3:Q{max_row}").clear_contents()
+                # Prepare batch update lists for each output column
+                col_f = [None] * len(col_b)  # Last Monthly (F)
+                col_e = [None] * len(col_b)  # Prev Monthly (E)
+                col_m = [None] * len(col_b)  # Last Weekly (M)
+                col_l = [None] * len(col_b)  # Prev Weekly (L)
+                col_q = [None] * len(col_b)  # Last Daily (Q)
+                col_p = [None] * len(col_b)  # Prev Daily (P)
 
-                # 2) Write new values
+                sticker_to_idx = {str(cell).strip(): idx for idx, cell in enumerate(col_b)}
+
                 for _, row in subset.iterrows():
                     sticker = str(row.iloc[0]).strip()
                     stem    = str(row.iloc[1]).strip().removesuffix(".pdf")
@@ -88,35 +79,50 @@ def update_masters(mapping_file, output_root, root_folder,
                     dp  = data.get('daily_prev')
                     dp2 = data.get('daily_prev2', dp)
 
-                    for row_idx, cell in enumerate(col_b, start=3):
-                        if str(cell).strip() == sticker:
-                            if upd_last_monthly and ml is not None:
-                                sht.cells(row_idx, 6).value = ml
-                            if upd_prev_monthly and mp is not None:
-                                sht.cells(row_idx, 5).value = mp
-                            if upd_last_weekly and wl is not None:
-                                sht.cells(row_idx, 13).value = wl
-                            if upd_prev_weekly and wp is not None:
-                                sht.cells(row_idx, 12).value = wp
+                    idx = sticker_to_idx.get(sticker)
+                    if idx is None:
+                        continue
 
-                            # Unified daily logic
-                            pdf_p = os.path.join(root_folder, prog, folder, stem + ".pdf")
-                            try:
-                                hr = datetime.datetime.fromtimestamp(os.path.getmtime(pdf_p)).hour
-                            except:
-                                hr = 0
-                            if hr >= 8:
-                                last_val = dp
-                                prev_val = dp2
-                            else:
-                                last_val = dl
-                                prev_val = dp
+                    # Determine which daily to use
+                    pdf_p = os.path.join(root_folder, prog, folder, stem + ".pdf")
+                    try:
+                        hr = datetime.datetime.fromtimestamp(os.path.getmtime(pdf_p)).hour
+                    except:
+                        hr = 0
+                    if hr >= 8:
+                        last_val = dp
+                        prev_val = dp2
+                    else:
+                        last_val = dl
+                        prev_val = dp
 
-                            if upd_last_daily:
-                                sht.cells(row_idx, 17).value = last_val
-                            if upd_prev_daily:
-                                sht.cells(row_idx, 16).value = prev_val
-                            break
+                    if upd_last_monthly and ml is not None:
+                        col_f[idx] = ml
+                    if upd_prev_monthly and mp is not None:
+                        col_e[idx] = mp
+                    if upd_last_weekly and wl is not None:
+                        col_m[idx] = wl
+                    if upd_prev_weekly and wp is not None:
+                        col_l[idx] = wp
+                    if upd_last_daily and last_val is not None:
+                        col_q[idx] = last_val
+                    if upd_prev_daily and prev_val is not None:
+                        col_p[idx] = prev_val
+
+                # Now batch write to Excel in one go for each column (None stays unmodified)
+                if upd_last_monthly:
+                    sht.range(f"F3:F{max_row}").value = [[v] for v in col_f]
+                if upd_prev_monthly:
+                    sht.range(f"E3:E{max_row}").value = [[v] for v in col_e]
+                if upd_last_weekly:
+                    sht.range(f"M3:M{max_row}").value = [[v] for v in col_m]
+                if upd_prev_weekly:
+                    sht.range(f"L3:L{max_row}").value = [[v] for v in col_l]
+                if upd_last_daily:
+                    sht.range(f"Q3:Q{max_row}").value = [[v] for v in col_q]
+                if upd_prev_daily:
+                    sht.range(f"P3:P{max_row}").value = [[v] for v in col_p]
+
 
             wb.save()
             wb.close()
